@@ -11,7 +11,7 @@ $(function() {
     $('#link_login').on('click', function() {
         $('.login-box').show()
         $('.reg-box').hide()
-        console.log('dadadad')
+
     })
 
 
@@ -43,13 +43,13 @@ $(function() {
         // 路径 参数是对象形式 字符串 和jquery 格式 val()变为字符串格式 jquery 和html格式有区别
         // 发送post请求
         var data = { username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val() }
-        $.post('http://www.liulongbin.top:3007/api/reguser', data,
+        $.post('/api/reguser', data,
             function(res) {
                 if (res.status !== 0) {
                     // return console.log('注册失败')
                     return layer.msg(res.message)
                 }
-                layer.msg('登录成功,请登录')
+                layer.msg('注册成功,请登录')
                     // 模拟人的点击行为 跳转到登录
                 $('#link_login').click()
             })
@@ -75,7 +75,7 @@ $(function() {
                     // 将登陆成功的token字符串保存到本地locaStorage
                 localStorage.setItem('token', res.token)
                     // 跳转到后台主页 /代表根路径
-                    // location.href = '/index.html'
+                location.href = '/index.html'
             }
         })
     })
